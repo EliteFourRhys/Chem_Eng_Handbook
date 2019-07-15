@@ -1,7 +1,5 @@
 import pandas as pd
 import math
-import os
-import sys
 
 def main():
     global succes
@@ -50,7 +48,7 @@ def to_temp(data, vp):
     # this looks weird.. but just had to adjust the indexing of all the different slices i was making
     while counter < (len(data) + A.first_valid_index()):
         temp = ((B[counter]/(A[counter]-math.log(float(vp), 10))) - C[counter])
-        output = 'Temp:{} C  VP:{} mmHg  Formula:{}  Names:{} {}   Temp Range:{} - {}'.format(temp, vp, data.Formula[counter], data.Name[counter], data.Formula[counter], data.TMIN[counter], data.TMAX[counter])
+        output = 'Temp:{:6} C VP:{:6} mmHg   Names:{:8}    {:26}       Temp Range:{:4}  - {:6} C'.format(round(temp,2), vp, data.Formula[counter], data.Name[counter], data.TMIN[counter], data.TMAX[counter])
         print(output)
         counter += 1
     global succes
@@ -61,7 +59,7 @@ def to_VP(data, temp):
     counter = A.first_valid_index()
     while counter < (len(data) + A.first_valid_index()):
         vp = 10**(A[counter] - (B[counter]/(float(temp) + C[counter])))
-        output = 'Temp:{}  VP:{}  Formula:{}  Names:{} {}   Temp Range:{}-{}'.format(temp, vp, data.Formula[counter], data.Name[counter], data.Formula[counter], data.TMIN[counter], data.TMAX[counter])
+        output = 'Temp:{:6} C VP:{:6} mmHg   Names:{:8}    {:26}       Temp Range:{:4}  - {:6} C'.format(temp, round(vp,2), data.Formula[counter], data.Name[counter], data.TMIN[counter], data.TMAX[counter])
         print(output)
         counter += 1 
     global succes
