@@ -1,54 +1,39 @@
-# import xlrd
-#
-# loc="Data_Set.xlsx"
-# st=input("Enter an element/compound")
-#
-# def main():
-mass=input("Input")
+import xlrd
+loc=r"Data_Set.xlsx"
+st=input("Enter an element/compound")
+SampleMoles=input("Enter number of moles or n if you dont know")
+SampleMass=input("Enter the mass or m if you dont know")
+workbook=xlrd.open_workbook(loc)
+sheets=workbook.sheet_by_index(0)
+for i in range(sheets.nrows):
+  if(st.casefold()==sheets.cell_value(i,1).casefold()):
+    Molar_Mass=sheets.cell_value(i,3)
+    break
+print("The molar mass of "+st+" is "+str(Molar_Mass))
+if((SampleMoles.isdigit() and SampleMass.isdigit()) or (SampleMoles.isalpha() and SampleMass.isalpha())):
+	print("Invalid Input...Try again!")
+	exit()
+def Find_Moles(Moles,Mass):
+	if(Moles=="n"):
+		output=print("The number of moles is"+str(int(Mass)/Molar_Mass))
+	else:
+		output=print("straight up off yourself")
+	return output
+if(SampleMoles.isdigit()):
+  	print("The number of moles is "+str(SampleMoles))
+else:
+ Find_Moles(SampleMoles,SampleMass)
 
-#    global sheets
-#    test()
-#    SampleMoles=input("Enter no of moles to convert or n if you dont know")
-#    SampleMass=input("Enter the mass to convert or m if you dont know")
-#    workbook=xlrd.open_workbook(loc)
-#    sheets=workbook.sheet_by_index(0)
-#    Find_Moles(SampleMoles,SampleMass)
-#    Find_Mass(SampleMoles,SampleMass)
-#
-# def test():
-#     print("testing")
-#
-# def Find_Moles(Moles,Mass):
-#     global sheets
-#     print(sheets.nrows)
-#     for i in range(sheets.nrows):
-#         if (st.casefold()==sheets.cell_value(i,1).casefold()):
-#             Molar_Mass=sheets.cell_value(i,3)
-#             Calc_Moles=int(Mass)/Molar_Mass
-#             output=print("The number of moles is "+str(Calc_Moles)+" and the molar mass is "+str(Molar_Mass))
-#             break
-#      if((type(Moles) is int) && (type(Mass) is int)):
-#         return output ("Overspecified system, please try again")
-#     if(type(Moles) is int):
-#         output=print("The number of moles is " +str(Moles)+ "and the molar mass is "+str(Molar_Mass))
-#     return output
-#
-#
-# def Find_Mass(Moles,Mass):
-#     global sheets
-#     if (Mass=="m"):
-#       for i in sheets.nrows:
-#             if (st.casefold()==sheets.cell_value(i,1).casefold()):
-#                 Molar_Mass=sheets.cell_value(i,3)
-#                 Calc_Mass=Moles*Molar_Mass
-#                 output=print("The mass of the sample is "+Calc_Mass)
-#                 break
-#     elif(((type(Moles) is int) && (type(Mass) is int)):
-#         return output ("Overspecified system, please try again"))
-#     else:
-# 	    output=print("The sample mass is  "+Mass)
-#     return output
-#
-# if __name__ == "__main__":
-# 	main()
-#
+def Find_Mass(Moles,Mass):
+ if(Mass=="m"):
+  output=print("The mass of the sample is "+str(int(Moles)*Molar_Mass))
+ else:
+  output=print("straight up off yourself")
+ return output
+if(SampleMass.isdigit()):
+	print("The mass of the sample is "+str(SampleMass))
+else:
+	Find_Mass(SampleMoles,SampleMass)
+
+
+
