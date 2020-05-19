@@ -15,8 +15,12 @@ def main():
             print("That would be 8.314 J/(mol*K), please stop being silly")
         else:
             print("that didn't work, try entering a letter from PV=nRT")
-    except:
+
+    except OSError: # Rhys added OSError, using just except, catches every error and proceeds on(not good for debugging and bulding), making it hard for you to debug, just get it working assuming a perfect user, then catch later on. should be easier to figure out now
+
         print("that didn't work, try entering a letter from PV=nRT")
+        
+        main() # rhys added this so program restarts on error not terminates
 
 
 def user_input():
