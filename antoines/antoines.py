@@ -1,6 +1,7 @@
 import pandas as pd
 import math
 
+
 def main():
     global succes
     succes = False
