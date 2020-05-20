@@ -44,60 +44,60 @@ def calculate_t():
     print("The value for pressure is " + str(t_value) + " K")
 
 def pressure():
-    P = print(input("Enter the pressure value followed by its units (e.g. 101325 kPa): ")).lower()
-    pressure_value = [int(word) for word in P.split() if word.isdigit()]
+    P = input("Enter the pressure value followed by its units (e.g. 101325 kPa): ").lower()
+    pressure_value = [float(word) for word in P.split() if word.isdigit()]
     if 'atm' in P:
-        pressure_value = pressure_value * 101.325
+        pressure_value = pressure_value[0] * 101.325
     elif 'pa' in P:
-        pressure_value = pressure_value * 0.001
+        pressure_value = pressure_value[0] * 0.001
     elif 'mmhg' or 'torr' in P:
-        pressure_value = pressure_value * 0.133322
+        pressure_value = pressure_value[0] * 0.133322
     elif 'bar' in P:
-        pressure_value = pressure_value * 100
+        pressure_value = pressure_value[0] * 100
     elif 'mmhg' in P:
-        pressure_value = pressure_value * 0.133322
+        pressure_value = pressure_value[0] * 0.133322
     elif 'kpa' in P:
-        return pressure_value
+        pressure_value = pressure_value[0]
     else:
         print("try entering a pressure in either: atm, Pa, kPa, mmHg, bar, or torr")
     return pressure_value
 
 def volume():
-    V = print(input("Enter the volume value followed by its units (e.g. 12 m^3, 12 m3, 12 L): ")).lower()
-    volume_value = [int(word) for word in V.split() if word.isdigit()]
+    V = input("Enter the volume value followed by its units (e.g. 12 m^3, 12 m3, 12 L): ").lower()
+    volume_value = [float(word) for word in V.split() if word.isdigit()]
     if 'm3' or 'm^3' in V:
-        volume_value = volume_value * 1000
+        volume_value = volume_value[0] * 1000
     elif 'cm3' or 'cm^3' in V:
-        volume_value = volume_value * 0.001
+        volume_value = volume_value[0] * 0.001
     elif 'ft3' or 'ft^3' in V:
-        volume_value = volume_value * 28.3168
+        volume_value = volume_value[0] * 28.3168
     elif 'in3' or 'in^2' in V:
-        volume_value = volume_value * 0.0163871
+        volume_value = volume_value[0] * 0.0163871
     elif 'gal' or 'gallons' in V:
-        volume_value = volume_value * 4.54609
+        volume_value = volume_value[0] * 4.54609
     elif 'ml' or 'millilitres' in V:
-        volume_value = volume_value * 0.001
+        volume_value = volume_value[0] * 0.001
     elif 'l' or 'litres' in V:
-        return volume_value
+        volume_value = volume_value[0]
     else:
         print("try entering a volume in either: m3, cm3, ft3, in3, gal, mL, L")
     return volume_value
 
 def temperature():
-    T = print(input("Enter the temperature value followed by its units (e.g. 12 C, 12 Celcius, 12 degrees celcius): ")).lower()
-    temperature_value = [int(word) for word in T.split() if word.isdigit()]
+    T = input("Enter the temperature value followed by its units (e.g. 12 C, 12 Celcius, 12 degrees celcius): ").lower()
+    temperature_value = [float(word) for word in T.split() if word.isdigit()]
     if 'c' or 'degrees celcius' or 'celcius' in T:
-        temperature_value = temperature_value + 273.15
+        temperature_value = temperature_value[0] + 273.15
     elif 'f' or 'degrees fahrenheit' or 'fahrenheit' in T:
-        temperature_value = (temperature_value - 32) * (5/9) + 273.15
+        temperature_value = (temperature_value[0] - 32) * (5/9) + 273.15
     elif 'k' or 'kelvin' or 'kelvins' in T:
-        return temperature_value
+        temperature_value = temperature_value[0]
     else:
         print("try entering a temperature in either: C, F, or K")
     return temperature_value
 
 def moles():
-    n = print(input("Enter the value for the amount of moles. If not stated in the question, assume 1 mol (only enter the value): ")).lower()
+    n = float(input("Enter the value for the amount of moles. If not stated in the question, assume 1 mol (only enter the value): "))
     return n
 
 main()
